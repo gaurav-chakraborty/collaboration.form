@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration & Partnership Request</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto+Serif:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Serif', serif;
+            background: #1C1F26;
+            color: #E8E6E1;
+            line-height: 1.6;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="2"/></filter><rect width="100" height="100" fill="white" filter="url(%23noise)"/></svg>');
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header Image */
+        .header-section {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #0A0E17 0%, #151920 100%);
+            border-radius: 8px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><defs><pattern id="grain" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><rect fill="%230A0E17" width="200" height="200"/><image href="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22/></filter><rect width=%22100%22 height=%22100%22 fill=%22white%22 filter=%22url(%23n)%22 opacity=%220.05%22/></svg>" x="0" y="0" width="200" height="200"/></pattern></defs><rect width="200" height="200" fill="url(%23grain)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #A38A4D;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .header-subtitle {
+            color: #B8B3A8;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Form Wrapper */
+        .form-wrapper {
+            background: #1C1F26;
+            border: 1px solid #2A2E37;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-intro {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #2A2E37;
+        }
+
+        .form-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #A38A4D;
+            margin-bottom: 12px;
+        }
+
+        .form-intro p {
+            color: #B8B3A8;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Section Headers */
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #A38A4D;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #8C7851;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #E8E6E1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .required::after {
+            content: ' *';
+            color: #A38A4D;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            background: #0F1318;
+            border: 1px solid #2A2E37;
+            border-radius: 4px;
+            color: #E8E6E1;
+            font-family: 'Roboto Serif', serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #A38A4D;
+            box-shadow: 0 0 0 2px rgba(163, 138, 77, 0.1);
+            background: #141822;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Roboto Serif', serif;
+        }
+
+        /* Checkbox & Radio Styles */
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #A38A4D;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin: 0;
+            cursor: pointer;
+            text-transform: none;
+            letter-spacing: normal;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* Submit Button */
+        .form-actions {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #2A2E37;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #A38A4D 0%, #8C7851 100%);
+            color: #0A0E17;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(163, 138, 77, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(163, 138, 77, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Footer Notice */
+        .form-footer {
+            text-align: center;
+            font-size: 12px;
+            color: #8C7851;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Confirmation Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1C1F26;
+            padding: 50px 40px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid #2A2E37;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #A38A4D;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .modal-text {
+            color: #B8B3A8;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .modal-text strong {
+            color: #E8E6E1;
+        }
+
+        .modal-link {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #A38A4D 0%, #8C7851 100%);
+            color: #0A0E17;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(163, 138, 77, 0.3);
+        }
+
+        .modal-close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid #2A2E37;
+            color: #B8B3A8;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            width: auto;
+            box-shadow: none;
+        }
+
+        .modal-close-btn:hover {
+            border-color: #A38A4D;
+            color: #A38A4D;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            .form-wrapper {
+                padding: 24px;
+            }
+
+            .header-title {
+                font-size: 24px;
+            }
+
+            .header-section {
+                height: 200px;
+            }
+
+            .modal-content {
+                padding: 40px 24px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header-section">
+            <div class="header-content">
+                <div class="header-icon">🤝</div>
+                <div class="header-title">PARTNERSHIP INQUIRY</div>
+                <div class="header-subtitle">Collaboration • Partnership • Training • Consultation</div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-wrapper">
+            <div class="form-intro">
+                <h2>Let's Connect</h2>
+                <p>Thank you for your interest in connecting. This form helps organize requests related to collaborations, partnerships, training programs, or consultation opportunities. Each submission is personally reviewed, and you can expect a response within <strong>2–3 business days</strong>.</p>
+            </div>
+
+            <form id="partnershipForm">
+                <!-- Section 1: Contact Information -->
+                <div class="form-section">
+                    <div class="section-header">Contact Information</div>
+
+                    <div class="form-group">
+                        <label for="fullName" class="required">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organization">Organization / Institution / Individual</label>
+                        <input type="text" id="organization" name="organization">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Role / Designation (if applicable)</label>
+                        <input type="text" id="role" name="role">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp (Optional)</label>
+                        <input type="tel" id="whatsapp" name="whatsapp">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telegram">Telegram (Optional)</label>
+                        <input type="text" id="telegram" name="telegram">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn (Optional)</label>
+                        <input type="text" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Website / Portfolio (Optional)</label>
+                        <input type="text" id="website" name="website">
+                    </div>
+                </div>
+
+                <!-- Section 2: Engagement Type -->
+                <div class="form-section">
+                    <div class="section-header">Engagement Type</div>
+
+                    <div class="form-group">
+                        <label class="required">What kind of engagement are you seeking?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="eng_partnership" name="engagementType" value="Partnership / Collaboration" required>
+                                <label for="eng_partnership">Partnership / Collaboration</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="eng_training" name="engagementType" value="Corporate or Academic Training">
+                                <label for="eng_training">Corporate or Academic Training</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="eng_lecture" name="engagementType" value="Guest Lecture / Workshop">
+                                <label for="eng_lecture">Guest Lecture / Workshop</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="eng_consulting" name="engagementType" value="Consulting Project">
+                                <label for="eng_consulting">Consulting Project</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="eng_research" name="engagementType" value="Research or Advisory Support">
+                                <label for="eng_research">Research or Advisory Support</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="eng_other" name="engagementType" value="Other">
+                                <label for="eng_other">Other (please specify)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="otherEngagement" style="display:none;" id="otherEngagementLabel">Please specify:</label>
+                        <input type="text" id="otherEngagement" name="otherEngagement" style="display:none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proposal" class="required">Brief Overview of Your Proposal</label>
+                        <textarea id="proposal" name="proposal" placeholder="A concise summary of your goals, focus areas, and expected outcomes." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required">Preferred Mode of Engagement</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mode_virtual" name="engagementMode" value="Virtual">
+                                <label for="mode_virtual">Virtual</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mode_onsite" name="engagementMode" value="On-site">
+                                <label for="mode_onsite">On-site</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mode_hybrid" name="engagementMode" value="Hybrid">
+                                <label for="mode_hybrid">Hybrid</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Timeline & Scope -->
+                <div class="form-section">
+                    <div class="section-header">Timeline & Scope</div>
+
+                    <div class="form-group">
+                        <label for="duration">Expected Duration / Timeline</label>
+                        <input type="text" id="duration" name="duration" placeholder="e.g., 3 months, 6 weeks">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startDate">Proposed Start Date</label>
+                        <input type="date" id="startDate" name="startDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">Estimated Budget (if applicable)</label>
+                        <input type="text" id="budget" name="budget" placeholder="e.g., $5,000 - $10,000 or INR 50,000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supportingLink">Supporting Link or Document (Optional)</label>
+                        <input type="text" id="supportingLink" name="supportingLink" placeholder="e.g., https://example.com/proposal">
+                    </div>
+                </div>
+
+                <!-- Section 4: Additional Notes -->
+                <div class="form-section">
+                    <div class="section-header">Additional Information</div>
+
+                    <div class="form-group">
+                        <label for="additionalComments">Any Additional Comments or Requests</label>
+                        <textarea id="additionalComments" name="additionalComments" placeholder="Share anything else you'd like me to know..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Footer Notice -->
+                <div class="form-footer">
+                    Submitting this form expresses interest but does not constitute a formal agreement.<br>
+                    All collaborations are confirmed after mutual discussion.
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <button type="submit">Send Inquiry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">✓</div>
+            <div class="modal-title">Thank You!</div>
+            <div class="modal-text">
+                I have received your submission and will get back to you within <strong>2–3 business days</strong>.<br><br>
+                In the meantime, feel free to connect with me on LinkedIn.
+            </div>
+            <a href="https://www.linkedin.com/in/gauravchakrabortyofficial/" class="modal-link" target="_blank">Connect on LinkedIn</a>
+            <br>
+            <button class="modal-close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide "Other" field based on selection
+        const engagementRadios = document.querySelectorAll('input[name="engagementType"]');
+        const otherEngagement = document.getElementById('otherEngagement');
+        const otherEngagementLabel = document.getElementById('otherEngagementLabel');
+
+        engagementRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Other') {
+                    otherEngagement.style.display = 'block';
+                    otherEngagementLabel.style.display = 'block';
+                    otherEngagement.required = true;
+                } else {
+                    otherEngagement.style.display = 'none';
+                    otherEngagementLabel.style.display = 'none';
+                    otherEngagement.required = false;
+                }
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('partnershipForm');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(form);
+            const engagementModes = Array.from(document.querySelectorAll('input[name="engagementMode"]:checked')).map(el => el.value).join(', ');
+            
+            // Prepare data object
+            const data = {
+                fullName: formData.get('fullName'),
+                organization: formData.get('organization'),
+                role: formData.get('role'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                whatsapp: formData.get('whatsapp'),
+                telegram: formData.get('telegram'),
+                linkedin: formData.get('linkedin'),
+                website: formData.get('website'),
+                engagementType: formData.get('engagementType'),
+                otherEngagement: formData.get('otherEngagement'),
+                proposal: formData.get('proposal'),
+                engagementMode: engagementModes,
+                duration: formData.get('duration'),
+                startDate: formData.get('startDate'),
+                budget: formData.get('budget'),
+                supportingLink: formData.get('supportingLink'),
+                additionalComments: formData.get('additionalComments'),
+                submittedAt: new Date().toLocaleString()
+            };
+
+            // Send to Formspree
+            try {
+                const response = await fetch('https://formspree.io/f/xdkyodbz', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    showConfirmationModal();
+                } else {
+                    form.reset();
+                    showConfirmationModal();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                form.reset();
+                showConfirmationModal();
+            }
+        });
+
+        function showConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('confirmationModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
